@@ -4,7 +4,6 @@
  * @author Nat Welch
  */
 
-
 // Connects to DB. Returns a connection.
 function connect()
 {
@@ -17,8 +16,16 @@ function connect()
 	}
 	
 	// Uncomment for detailed database errors
-	//$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
-	
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
+
+	// Create table if it does not exist	
+	$query = "select name from sqlite_master where name='notes'";
+	if(!$db->query($query)->fetch())
+	{
+		$query = "CREATE TABLE notes (id INTEGER PRIMARY KEY,post TEXT, tag TEXT, ts TIMESTAMP)";
+		$db->exec($query);
+	}
+
 	return $db;
 }
 
@@ -53,6 +60,7 @@ function add($conn, $post, $tag)
 	$tag = htmlspecialchars(filter_var($tag));
 
 	$query = "insert into notes (ts, post, tag) values(strftime('%s','now','localtime'),'$post','$tag')";
+	print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)
@@ -75,7 +83,7 @@ function add($conn, $post, $tag)
 <body>
 <form action="index.php" method="post">
 <textarea rows="3" cols="63" name="post">Your Notes</textarea>
-<br /><input value="Class"> <input type="submit" value="Submit">
+<br /><input value="Class" name="tag"> <input type="submit" value="Submit">
 </form>
 
 <?php if($_POST["post"] != NULL) { add($db, $_POST["post"], $_POST["tag"]); } ?>
