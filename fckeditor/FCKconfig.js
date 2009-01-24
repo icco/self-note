@@ -1,12 +1,12 @@
 FCKConfig.ToolbarSets["NatToolbar"] = [
-['Cut','Copy','Paste','PasteText','PasteWord'],
+['Cut','Copy','Paste','PasteText'],
 	['Undo','Redo','-','Bold','Italic','Underline','StrikeThrough'],
-	'/',
 	['OrderedList','UnorderedList','-','Outdent','Indent'],
 	['Link','Unlink','Anchor'],
-	'/',
-	['Style'],
-	['Table','Image','Flash','Rule','SpecialChar'],
-	['About']
+	['Style']
 	] ;
+
+FCKConfig.FirefoxSpellChecker = true ;
+FCKConfig.AutoDetectPasteFromWord = false ;
+FCKConfig.ProcessHTMLEntities = true ;
 

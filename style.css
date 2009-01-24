@@ -1,0 +1,53 @@
+/**
+ * Change the css in here to make things shiny or less shiny for your personal preferences.
+ */
+#container {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.timestamp {
+	color: gray;
+	font-size: 10px;
+	margin-left: 45px;
+}
+
+.tag {
+	font-weight: 800;
+	font-size: 17px;
+	margin-left: 45px;
+}
+
+.grav {
+	float: left;
+
+}
+
+body {
+    font-family:Georgia,serif;
+}
+
+.post {
+	margin-left: 10px;
+}
+
+#foot {
+	padding: 5px;
+	margin: 2px;
+	border-top: dotted gray 1px;
+	font-size: 10px;
+}
+
+#foot small {
+	color: gray;
+}
+
+a, a:visited {
+	color: gray;
+}
+
+a:hover {
+	color: red;
+}
+
