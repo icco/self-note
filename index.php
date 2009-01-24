@@ -4,17 +4,24 @@
  * @author Nat Welch
  */
 
+/*
+ * USER CONFIG
+ */
+$DEFAULT_EMAIL = "nat@natwelch.com";
+$DEFAULT_COURSE = "COURSE";
+$SQLITE_DB = "note.db";
+
 include("fckeditor/fckeditor.php") ;
 
 // Connects to DB. Returns a connection.
 function connect()
 {
-	$DBNAME = "selfnote.db"; // The sqlite DataBase.
-	
+	global $SQLITE_DB;
 	try {
-		$db = new PDO("sqlite:" . $DBNAME);
+		$db = new PDO("sqlite:" . $SQLITE_DB);
 	} catch (PDOException $e) {
 		echo 'Connection failed: ' . $e->getMessage();
+		exit(-1);
 	}
 	
 	// Uncomment for detailed database errors
@@ -87,12 +94,13 @@ function gravatar($email)
 	$size = 40;
 
 	// Default Image
-	$default = "http://www.somewhere.com/homestar.jpg";
+	$default = "http://some.com/image.jpg";
 
 	// Generate Image Link
 	$grav_url = "http://www.gravatar.com/avatar.php?gravatar_id=";
 	$grav_url .= md5( strtolower($email) );
-	$grav_url .= "&default=".urlencode($default); // Comment out for default gravatar
+	$grav_url .= "?d=identicon";
+	//$grav_url .= "&default=".urlencode($default); // Comment out for default gravatar
 	$grav_url .= "&size=" . $size; 
 
 	return $grav_url;
@@ -114,16 +122,17 @@ function gravatar($email)
 		<div id="editor">
 		<form action="index.php" method="post">
 		<?php
-		$oFCKeditor = new FCKeditor('post') ;
-		$oFCKeditor->ToolbarSet = 'NatToolbar';
-		$oFCKeditor->BasePath = 'fckeditor/' ;
-		$oFCKeditor->Width = '100%';
-		$oFCKeditor->Height = '440px';
-		$oFCKeditor->Value = '<p>Enter Notes Here.</p>' ;
-		$oFCKeditor->Config["CustomConfigurationsPath"] = "../FCKconfig.js";
-		$oFCKeditor->Create();
+			$oFCKeditor = new FCKeditor('post') ;
+			$oFCKeditor->ToolbarSet = 'NatToolbar';
+			$oFCKeditor->BasePath = 'fckeditor/' ;
+			$oFCKeditor->Width = '100%';
+			$oFCKeditor->Height = '440px';
+			$oFCKeditor->Value = '<p>Enter Notes Here.</p>' ;
+			$oFCKeditor->Config["CustomConfigurationsPath"] = "../FCKconfig.js";
+			$oFCKeditor->Config['SkinPath'] = 'skins/silver/';
+			$oFCKeditor->Create();
 		?>
-		<br /><input value="nat@natwelch.com" name="email"> <input value="Class" name="tag"> <input type="submit" value="Submit">
+		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit">
 		</form>
 
 		<?php 
@@ -145,7 +154,7 @@ function gravatar($email)
 		<?php $db = NULL; /* Close DB */ ?>
 
 	<div id="foot">This note taking software developed by <a href="http://natwelch.com" title="Nat's Homepage">Nat Welch</a>. It's hosted on <a href="http://github.com/icco/self-note/tree/master" title="GitHub Repo">GitHub</a>.
-	<br /><small>//Cool Quote here...</small>
+	<br /><small>// I don't know if this opens pants, but I'll give it a try. --- trainman419</small>
 	</div>
 	</div>
 	</body>
