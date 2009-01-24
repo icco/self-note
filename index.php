@@ -132,7 +132,8 @@ function gravatar($email)
 			$oFCKeditor->Config['SkinPath'] = 'skins/silver/';
 			$oFCKeditor->Create();
 		?>
-		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit">
+		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit"> 
+		<a href="http://gist.github.com/" style=" margin-left: 150px;">GitHub Gists</a>
 		</form>
 
 		<?php 
