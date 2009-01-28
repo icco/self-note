@@ -1,8 +1,7 @@
 <?
 
-	require_once('config.php');
-	require_once('saveAdapter.class');
-
+	require_once('saveAdapterSQLite.class');
+	include('../config.php');
 
 	saveAdapter::writeXmlHeader($_REQUEST['action'], true);
 
