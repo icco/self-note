@@ -28,13 +28,14 @@ function connect()
 		$db->exec($query);
 	}
 	
-	// Create drafts table
+	/* Create drafts table
 	$query = "select name from sqlite_master where name='notes_drafts'";
 	if(!$db->query($query)->fetch())
 	{
 		$query = "CREATE TABLE notes_drafts (id INTEGER PRIMARY KEY,post TEXT, tag TEXT, ts TIMESTAMP, email TEXT)";
 		$db->exec($query);
 	}
+	 */
 
 	return $db;
 }
@@ -46,7 +47,7 @@ function format($row)
 	$ret .= "<div id=\"". $row['id'] . "\"> ";
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>";
 	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>";
-	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . "</div>";
+	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span></div>";
 	$ret .= "<div class=\"post\"> " . html_entity_decode($row['post']) . "</div>";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
@@ -61,6 +62,15 @@ function getPosts($conn)
 	return $conn->query($query);
 }
 
+// Returns the post content 
+function getPost($conn, $id)
+{
+	$query = "select * from notes where id='$id'";
+	$ret = $conn->query($query)->fetch();
+
+	return $ret["post"];
+}
+
 // Returns an array of posts, tags, and dates within specified tag
 function getPostsbyTag($conn, $tag)
 {
@@ -71,11 +81,11 @@ function getPostsbyTag($conn, $tag)
 // Adds a new post
 function add($conn, $post, $tag, $email)
 {
-	$post = htmlentities(filter_var($post));
+	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
 	$tag = htmlentities(filter_var($tag));
 
 	$query = "insert into notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email')";
-	//print $query;
+	print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)
@@ -91,10 +101,9 @@ function add($conn, $post, $tag, $email)
 function update($conn, $post, $id)
 {
 	$post = htmlentities(filter_var($post));
-	$tag = htmlentities(filter_var($tag));
 
-	$query = "update notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email') where id='$id'";
-	//print $query;
+	$query = "update notes (ts, post) values(strftime('%s','now','localtime'),'$post') where id='$id'";
+	print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)

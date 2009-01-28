@@ -2,7 +2,7 @@ FCKConfig.ToolbarSets["NatToolbar"] = [
 ['Bold','Italic','Underline','StrikeThrough','-','Undo','Redo'],
 ['Cut','Copy','Paste'],
 ['OrderedList','UnorderedList','-','Outdent','Indent'],
-['Link','Unlink'],['Style'],['Source'],['-','ajaxAutoSave']] ;
+['Link','Unlink'],['Style'],['Source']] ;
 
 
 FCKConfig.FirefoxSpellChecker = true ;
@@ -10,18 +10,18 @@ FCKConfig.AutoDetectPasteFromWord = false ;
 FCKConfig.ProcessHTMLEntities = true ;
 
 // ajaxAutoSave plugin
-FCKConfig.Plugins.Add( 'ajaxAutoSave','en') ;
+//FCKConfig.Plugins.Add( 'ajaxAutoSave','en') ;
 
 // --- config settings for the ajaxAutoSave plugin ---
 // URL to post to
-FCKConfig.ajaxAutoSaveTargetUrl = '/../saveAdapter/saveAdapter.php' ;
+//FCKConfig.ajaxAutoSaveTargetUrl = '/../saveAdapter/saveAdapter.php' ;
 
 // Enable / Disable Plugin onBeforeUpdate Action
-FCKConfig.ajaxAutoSaveBeforeUpdateEnabled = true ;
+//FCKConfig.ajaxAutoSaveBeforeUpdateEnabled = true ;
 
 // RefreshTime
-FCKConfig.ajaxAutoSaveRefreshTime = 30 ;
+//FCKConfig.ajaxAutoSaveRefreshTime = 30 ;
 
 // Sensitivity to key strokes
-FCKConfig.ajaxAutoSaveSensitivity = 2 ;
+//FCKConfig.ajaxAutoSaveSensitivity = 2 ;
 

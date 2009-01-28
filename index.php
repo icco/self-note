@@ -6,7 +6,6 @@
 
 include("fckeditor/fckeditor.php") ;
 include("backend.php");
-
 ?>
 
 <html>
@@ -21,6 +20,17 @@ include("backend.php");
 	<div id="container">
 	<h1>SelfNote.</h1>
 		<div id="editor">
+		<?php 
+			if(isset($_POST["post"])) 
+			{ 
+				add($db, $_POST["post"], $_POST["tag"], $_POST["email"]); 
+			} 
+			else if(isset($_POST["id"]))
+			{
+				update($db, $_POST["post"], $_POST["id"]);
+			}
+		?>
+		
 		<form action="index.php" method="post">
 		<?php
 			$oFCKeditor = new FCKeditor('post') ;
@@ -28,21 +38,27 @@ include("backend.php");
 			$oFCKeditor->BasePath = 'fckeditor/' ;
 			$oFCKeditor->Width = '100%';
 			$oFCKeditor->Height = '440px';
-			$oFCKeditor->Value = '<p>Enter Notes Here.</p>' ;
+			if(isset($_GET["update"]))
+			{
+				$oFCKeditor->Value = getPost($db,$_GET["update"]);
+				$up = $_GET["update"];
+			}
+			else
+			{
+				$oFCKeditor->Value = '<p>Enter Notes Here.</p>';
+				$up = 0;
+			}
 			$oFCKeditor->Config["CustomConfigurationsPath"] = "../FCKconfig.js";
 			$oFCKeditor->Config['SkinPath'] = 'skins/silver/';
 			$oFCKeditor->Create();
 		?>
 		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit"> 
 		<a href="http://gist.github.com/" style=" margin-left: 150px;">GitHub Gists</a>
+		<?php if($up > 0) { ?>
+			<input type="hidden" value="<?php print $up; ?>" name="id" />
+		<?php } ?>
 		</form>
 
-		<?php 
-			if(isset($_POST["post"])) 
-			{ 
-				add($db, $_POST["post"], $_POST["tag"], $_POST["email"]); 
-			} 
-		?>
 		</div>
 		<?php
 			$arr = getPosts($db);
