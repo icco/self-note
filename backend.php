@@ -100,7 +100,7 @@ function add($conn, $post, $tag, $email)
 
 function update($conn, $post, $id)
 {
-	$post = htmlentities(filter_var($post));
+	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
 
 	$query = "update notes (ts, post) values(strftime('%s','now','localtime'),'$post') where id='$id'";
 	print $query;
