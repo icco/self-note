@@ -94,6 +94,7 @@ function update($conn, $post, $tag, $email, $id)
 {
 	$post = rawurlencode(htmlspecialchars(filter_var($post), ENT_QUOTES));
 	$tag = htmlentities(filter_var($tag));
+	$id = abs((int)floor($id));
 
 	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag,email='$email' where id='$id'";
 	//print $query;
@@ -108,6 +109,25 @@ function update($conn, $post, $tag, $email, $id)
 		print "UPDATE FAIL.\n";	
 		print "\n<!-- " . $query . " -->\n";
 	}
+}
+
+function delete($conn, $id)
+{
+	$id = abs((int)floor($id));
+
+	$query = "delete notes where id='$id'";
+	$c = $conn->exec($query);
+
+	if($c >= 1)
+	{
+		//print "Updated " . $c . "POSTS.\n";	
+	}
+	else
+	{
+		print "DELETE FAIL.\n";	
+		print "\n<!-- " . $query . " -->\n";
+	}
+
 }
 
 // Converts an email to a gravatar img link
