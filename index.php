@@ -56,8 +56,8 @@ include("backend.php");
 			$oFCKeditor->Config['SkinPath'] = 'skins/silver/';
 			$oFCKeditor->Create();
 		?>
+		<a href="http://gist.github.com/" target="_blank" style="padding: 5px; float: right;">GitHub Gists</a>
 		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit"> 
-		<a href="http://gist.github.com/" target="_blank" style=" margin-left: 150px;">GitHub Gists</a>
 		<?php if($up > 0) { ?>
 			<input type="hidden" value="<?php print $up; ?>" name="id" />
 		<?php } ?>
