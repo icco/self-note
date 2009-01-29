@@ -40,7 +40,7 @@ include("backend.php");
 			$oFCKeditor->Height = '440px';
 			if(isset($_GET["update"]))
 			{
-				$oFCKeditor->Value = html_entity_decode(getPost($db,$_GET["update"]));
+				$oFCKeditor->Value = htmlspecialchars_decode(getPost($db,$_GET["update"]));
 				$up = $_GET["update"];
 			}
 			else

@@ -18,7 +18,7 @@ function connect()
 	}
 	
 	// Uncomment for detailed database errors
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
+	//$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
 
 	// Create table if it does not exist	
 	$query = "select name from sqlite_master where name='notes'";
@@ -28,15 +28,6 @@ function connect()
 		$db->exec($query);
 	}
 	
-	/* Create drafts table
-	$query = "select name from sqlite_master where name='notes_drafts'";
-	if(!$db->query($query)->fetch())
-	{
-		$query = "CREATE TABLE notes_drafts (id INTEGER PRIMARY KEY,post TEXT, tag TEXT, ts TIMESTAMP, email TEXT)";
-		$db->exec($query);
-	}
-	 */
-
 	return $db;
 }
 
@@ -48,7 +39,7 @@ function format($row)
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
 	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>\n";
 	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span></div>\n";
-	$ret .= "<div class=\"post\"> " . html_entity_decode($row['post'], ENT_QUOTES) . "</div>\n";
+	$ret .= "<div class=\"post\"> " . htmlspecialchars_decode($row['post'], ENT_QUOTES) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
 
@@ -95,6 +86,7 @@ function add($conn, $post, $tag, $email)
 	else
 	{
 		print "INSERT FAIL.\n";	
+		print "\n<!-- " . $query . " -->\n";
 	}
 }
 
@@ -114,6 +106,7 @@ function update($conn, $post, $tag, $email, $id)
 	else
 	{
 		print "UPDATE FAIL.\n";	
+		print "\n<!-- " . $query . " -->\n";
 	}
 }
 

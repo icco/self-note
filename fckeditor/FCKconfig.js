@@ -7,7 +7,7 @@ FCKConfig.ToolbarSets["NatToolbar"] = [
 
 FCKConfig.FirefoxSpellChecker = true ;
 FCKConfig.AutoDetectPasteFromWord = false ;
-FCKConfig.ProcessHTMLEntities = true ;
+FCKConfig.ProcessHTMLEntities = false;
 
 // ajaxAutoSave plugin
 //FCKConfig.Plugins.Add( 'ajaxAutoSave','en') ;
