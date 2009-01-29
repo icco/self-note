@@ -111,16 +111,16 @@ function update($conn, $post, $tag, $email, $id)
 	}
 }
 
-function delete($conn, $id)
+function del($conn, $id)
 {
 	$id = abs((int)floor($id));
 
-	$query = "delete notes where id='$id'";
+	$query = "delete from notes where id='$id'";
 	$c = $conn->exec($query);
 
 	if($c >= 1)
 	{
-		//print "Updated " . $c . "POSTS.\n";	
+		print "Deleted Post #" . $id;	
 	}
 	else
 	{

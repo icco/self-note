@@ -29,6 +29,10 @@ include("backend.php");
 			{
 				update($db, $_POST["post"],$_POST["tag"],$_POST["email"], $_POST["id"]);
 			}
+			else if(isset($_GET["delete"]))
+			{
+				del($db, $_GET["delete"]);
+			}
 		?>
 		
 		<form action="index.php" method="post">
