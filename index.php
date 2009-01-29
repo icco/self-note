@@ -27,7 +27,7 @@ include("backend.php");
 			} 
 			else if(isset($_POST["id"]))
 			{
-				update($db, $_POST["post"], $_POST["id"]);
+				update($db, $_POST["post"],$_POST["tag"],$_POST["email"], $_POST["id"]);
 			}
 		?>
 		
@@ -53,7 +53,7 @@ include("backend.php");
 			$oFCKeditor->Create();
 		?>
 		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit"> 
-		<a href="http://gist.github.com/" style=" margin-left: 150px;">GitHub Gists</a>
+		<a href="http://gist.github.com/" target="_blank" style=" margin-left: 150px;">GitHub Gists</a>
 		<?php if($up > 0) { ?>
 			<input type="hidden" value="<?php print $up; ?>" name="id" />
 		<?php } ?>

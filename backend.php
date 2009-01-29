@@ -44,11 +44,11 @@ function connect()
 function format($row)
 {
 	$ret = "<hr>\n";
-	$ret .= "<div id=\"". $row['id'] . "\"> ";
-	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>";
-	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>";
-	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span></div>";
-	$ret .= "<div class=\"post\"> " . html_entity_decode($row['post']) . "</div>";
+	$ret .= "<div id=\"". $row['id'] . "\">\n ";
+	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
+	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>\n";
+	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span></div>\n";
+	$ret .= "<div class=\"post\"> " . html_entity_decode($row['post'], ENT_QUOTES) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
 
@@ -98,11 +98,12 @@ function add($conn, $post, $tag, $email)
 	}
 }
 
-function update($conn, $post, $id)
+function update($conn, $post, $tag, $email, $id)
 {
 	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
+	$tag = htmlentities(filter_var($tag));
 
-	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post' where id='$id'";
+	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag,email='$email' where id='$id'";
 	//print $query;
 	$c = $conn->exec($query);
 
