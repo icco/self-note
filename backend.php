@@ -58,7 +58,7 @@ function format($row)
 // Returns an array of posts, tags, and dates
 function getPosts($conn)
 {
-	$query = "select * from notes order by ts desc";
+	$query = "select * from notes order by id desc";
 	return $conn->query($query);
 }
 
@@ -85,7 +85,7 @@ function add($conn, $post, $tag, $email)
 	$tag = htmlentities(filter_var($tag));
 
 	$query = "insert into notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email')";
-	print $query;
+	//print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)
@@ -102,8 +102,8 @@ function update($conn, $post, $id)
 {
 	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
 
-	$query = "update notes (ts, post) values(strftime('%s','now','localtime'),'$post') where id='$id'";
-	print $query;
+	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post' where id='$id'";
+	//print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)

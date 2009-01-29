@@ -51,3 +51,8 @@ a:hover {
 	color: red;
 }
 
+h1 a, h1 a:visited, h1 a:hover {
+	color: black;
+	text-decoration: none;
+}
+

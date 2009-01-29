@@ -18,10 +18,10 @@ include("backend.php");
 
 	<body>
 	<div id="container">
-	<h1>SelfNote.</h1>
+	<h1><a href="." >SelfNote</a>.</h1>
 		<div id="editor">
 		<?php 
-			if(isset($_POST["post"])) 
+			if(isset($_POST["post"]) && !isset($_POST["id"])) 
 			{ 
 				add($db, $_POST["post"], $_POST["tag"], $_POST["email"]); 
 			} 
