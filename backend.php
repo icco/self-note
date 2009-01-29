@@ -39,7 +39,7 @@ function format($row)
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
 	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>\n";
 	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span></div>\n";
-	$ret .= "<div class=\"post\"> " . htmlspecialchars_decode($row['post'], ENT_QUOTES) . "</div>\n";
+	$ret .= "<div class=\"post\"> " . stripslashes(htmlspecialchars_decode(rawurldecode($row['post']), ENT_QUOTES)) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
 
@@ -72,7 +72,7 @@ function getPostsbyTag($conn, $tag)
 // Adds a new post
 function add($conn, $post, $tag, $email)
 {
-	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
+	$post = rawurlencode(htmlspecialchars($post, ENT_QUOTES));
 	$tag = htmlentities(filter_var($tag));
 
 	$query = "insert into notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email')";
@@ -92,7 +92,7 @@ function add($conn, $post, $tag, $email)
 
 function update($conn, $post, $tag, $email, $id)
 {
-	$post = htmlspecialchars(filter_var($post), ENT_QUOTES);
+	$post = rawurlencode(htmlspecialchars(filter_var($post), ENT_QUOTES));
 	$tag = htmlentities(filter_var($tag));
 
 	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag,email='$email' where id='$id'";
