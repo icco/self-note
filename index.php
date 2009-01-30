@@ -15,8 +15,8 @@ include("backend.php");
 		<link href="style.css" rel="stylesheet" type="text/css" />
 		<?php $db = connect(); /* Open DB */ ?>
 	</head>
-
 	<body>
+	<div id="clock"></div>
 	<div id="container">
 	<h1><a href="." >SelfNote</a>.</h1>
 		<div id="editor">
@@ -79,5 +79,31 @@ include("backend.php");
 	<br /><small>// I don't know if this opens pants, but I'll give it a try. --- trainman419</small>
 	</div>
 	</div>
-	</body>
+<script language="javascript">
+function js_clock()
+{
+	var clock_time = new Date();
+	var clock_hours = clock_time.getHours();
+	var clock_minutes = clock_time.getMinutes();
+	var clock_seconds = clock_time.getSeconds();
+	if (clock_hours < 10)
+	{
+		clock_hours = "0" + clock_hours;
+	}
+	if (clock_minutes < 10)
+	{
+		clock_minutes = "0" + clock_minutes;
+	}
+	if (clock_seconds < 10)
+	{
+		clock_seconds = "0" + clock_seconds;
+	}
+	var clock_div = document.getElementById('clock');
+	clock_div.innerHTML = clock_hours + ":" + clock_minutes + ":" + clock_seconds;
+	//clock_div.innerHTML = clock_time.toGMTString();
+	setTimeout("js_clock()", 1000);
+} js_clock();
+</script>
+
+</body>
 </html>

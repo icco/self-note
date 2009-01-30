@@ -56,3 +56,7 @@ h1 a, h1 a:visited, h1 a:hover {
 	text-decoration: none;
 }
 
+#clock {
+	float: right;
+	position: absolute;
+}
