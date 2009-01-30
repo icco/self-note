@@ -56,12 +56,11 @@ h1 a, h1 a:visited, h1 a:hover {
 	text-decoration: none;
 }
 
-<<<<<<< HEAD:style.css
 .delete, .delete a, .delete a:visited, .delete a:hover {
 	color: red !important;
-=======
+}
+
 #clock {
 	float: right;
-	position: absolute;
->>>>>>> 6ede4d7fb106afb361798b946a5558efc0d9848a:style.css
 }
+
