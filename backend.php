@@ -39,7 +39,7 @@ function format($row)
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
 	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>\n";
 	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span> <span class=\"delete\"><a href=\"?delete=" . $row['id'] . "\">x</a></span></div>\n";
-	$ret .= "<div class=\"post\"> " . stripslashes(htmlspecialchars_decode(rawurldecode($row['post']), ENT_QUOTES)) . "</div>\n";
+	$ret .= "<div class=\"post\"> " . dePost($row['post']) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
 
@@ -90,11 +90,10 @@ function getPostsbyTag($conn, $tag)
 // Adds a new post
 function add($conn, $post, $tag, $email)
 {
-	$post = rawurlencode(htmlspecialchars($post, ENT_QUOTES));
+	$post = prePost($post);
 	$tag = htmlentities(filter_var($tag));
 
 	$query = "insert into notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email')";
-	//print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)
@@ -110,12 +109,11 @@ function add($conn, $post, $tag, $email)
 
 function update($conn, $post, $tag, $email, $id)
 {
-	$post = rawurlencode(htmlspecialchars(filter_var($post), ENT_QUOTES));
+	$post = prePost($post);
 	$tag = htmlentities(filter_var($tag));
 	$id = abs((int)floor($id));
 
 	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag',email='$email' where id='$id'";
-	//print $query;
 	$c = $conn->exec($query);
 
 	if($c >= 1)
@@ -177,7 +175,7 @@ function buildXML($conn)
 	{
 		$ret .= "\n<entry>";
 		$ret .= "<tag>" . $row["tag"] . "</tag>";
-		$ret .= "<text>" . strip_tags(stripslashes(htmlspecialchars_decode(rawurldecode($row['post']), ENT_QUOTES))) . "</text>";
+		$ret .= "<text>" . dePost($row['post']) . "</text>";
 		$ret .= "<email>" . $row["email"] . "</email>";
 		$ret .= "<date>" . $row["ts"] . "</date>";
 		$ret .= "</entry>\n";
@@ -185,6 +183,17 @@ function buildXML($conn)
 	$ret .= "</posts>";
 	
 	return $ret;
+}
+
+function dePost($in)
+{
+	return strip_tags(stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES)));
+}
+
+function prePost($in)
+{
+	$in = rawurlencode(htmlspecialchars($in, ENT_QUOTES));
+	return $in;
 }
 
 ?>

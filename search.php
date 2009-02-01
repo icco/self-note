@@ -2,7 +2,6 @@
 include("backend.php");
 $db = connect();
 $xml = buildXML($db);
-$db = NULL;
 $xmlDoc = new DOMDocument();
 $xmlDoc->loadXML($xml);
 
@@ -15,32 +14,28 @@ $q = $_GET["q"];
 if (strlen($q) > 0)
 {
 	$hint = "";
-	for($i = 0; $i < $x->length; $i++)
+	$arr = getPosts($db);
+	foreach($arr as $row)
 	{
-		$y = $x->item($i)->getElementsByTagName('tag');
-		$z = $x->item($i)->getElementsByTagName('text');
-		$e = $x->item($i)->getElementsByTagName('email');
-		
-		if($y->item(0)->nodeType == 1)
+		$y = $row['tag'];
+		$z = dePost($row['post']);
+		$e = $row['email'];
+
+		//find a link matching the search text
+		if (stristr($y,$q) || stristr($e,$q) || stristr($z,$q))
 		{
-			//find a link matching the search text
-			if (stristr($y->item(0)->childNodes->item(0)->nodeValue,$q) ||
-					stristr($e->item(0)->childNodes->item(0)->nodeValue,$q) ||
-					stristr($z->item(0)->childNodes->item(0)->nodeValue,$q))
+			if ($hint == "")
 			{
-				if ($hint == "")
-				{
-					$hint="post: " .$z->item(0)->childNodes->item(0)->nodeValue .  
-						"\ntag: " .$y->item(0)->childNodes->item(0)->nodeValue .
-						"\nemail: " .$e->item(0)->childNodes->item(0)->nodeValue;
-				}
-				else
-				{
-					$hint = $hint . "<br />\n" . 
-						"post: " .$z->item(0)->childNodes->item(0)->nodeValue .  
-						"\ntag: " .$y->item(0)->childNodes->item(0)->nodeValue .
-						"\nemail: " .$e->item(0)->childNodes->item(0)->nodeValue;
-				}
+				$hint="post: " .$z .  
+					"\ntag: " .$y .
+					"\nemail: " .$e;
+			}
+			else
+			{
+				$hint = $hint . "<br />\n" . 
+					"post: " .$z .  
+					"\ntag: " .$y .
+					"\nemail: " .$e;
 			}
 		}
 	}
@@ -59,4 +54,5 @@ else
 
 //output the response
 echo $response;
+$db = NULL;
 ?>
