@@ -1,4 +1,7 @@
-= SelfNote =
+===== 
+SelfNote
+===== 
+
 This is a simple php based webpage to take notes in class. I hope to eventually add more formatting options and better note storage options.
 
 Some future features:
