@@ -6,21 +6,23 @@ $db = NULL;
 $xmlDoc = new DOMDocument();
 $xmlDoc->loadXML($xml);
 
-$x=$xmlDoc->getElementsByTagName('posts');
+$x = $xmlDoc->getElementsByTagName('posts');
 
 //get the q parameter from URL
-$q=$_GET["q"];
+$q = $_GET["q"];
 
 //lookup all links from the xml file if length of q>0
 if (strlen($q) > 0)
 {
-	$hint="";
-	for($i=0; $i<($x->length); $i++)
+	$hint = "";
+	for($i = 0; $i < $x->length; $i++)
 	{
+		print $x->length;
 		$y = $x->item($i)->getElementsByTagName('tag');
 		$z = $x->item($i)->getElementsByTagName('text');
 		$e = $x->item($i)->getElementsByTagName('email');
-		if ($y->item(0)->nodeType==1)
+		
+		if($y->item(0)->nodeType == 1)
 		{
 			//find a link matching the search text
 			if (stristr($y->item(0)->childNodes->item(0)->nodeValue,$q) ||

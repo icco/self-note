@@ -33,9 +33,7 @@ function stateChanged()
 	{ 
 		document.getElementById("livesearch").
 			innerHTML=xmlHttp.responseText;
-		document.getElementById("livesearch").
-			style.border="1px solid #A5ACB2";
-	} 
+	}
 }
 
 function GetXmlHttpObject()

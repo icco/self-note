@@ -171,7 +171,7 @@ function buildXML($conn)
 {
 	$all = getPosts($conn);
 	
-	/*$ret = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";*/
+	//$ret = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?\>\n";
 	$ret = "<posts>";
 	foreach($all as $row)
 	{
@@ -183,7 +183,7 @@ function buildXML($conn)
 		$ret .= "</entry>";
 	}
 	$ret .= "</posts>";
-
+	
 	return $ret;
 }
 
