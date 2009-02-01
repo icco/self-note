@@ -4,10 +4,7 @@ function showResult(str)
 {
 	if (str.length==0)
 	{ 
-		document.getElementById("livesearch").
-			innerHTML="";
-		document.getElementById("livesearch").
-			style.border="0px";
+		document.getElementById("livesearch").innerHTML="";
 		return
 	}
 
@@ -31,8 +28,7 @@ function stateChanged()
 { 
 	if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
 	{ 
-		document.getElementById("livesearch").
-			innerHTML=xmlHttp.responseText;
+		document.getElementById("livesearch").innerHTML=xmlHttp.responseText;
 	}
 }
 
@@ -44,14 +40,14 @@ function GetXmlHttpObject()
 		// Firefox, Opera 8.0+, Safari
 		xmlHttp=new XMLHttpRequest();
 	}
-	catch (e)
+	catch(e)
 	{
 		// Internet Explorer
 		try
 		{
 			xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
 		}
-		catch (e)
+		catch(e)
 		{
 			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}

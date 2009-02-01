@@ -19,6 +19,7 @@ include("backend.php");
 	<div id="clock"></div>
 	<div id="container">
 	<h1><a href="." >SelfNote</a>.</h1>
+	<h4><a href="search.html" >search...</a></h4>
 		<div id="editor">
 		<?php 
 			if(isset($_POST["post"]) && !isset($_POST["id"])) 

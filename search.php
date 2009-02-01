@@ -17,7 +17,6 @@ if (strlen($q) > 0)
 	$hint = "";
 	for($i = 0; $i < $x->length; $i++)
 	{
-		print $x->length;
 		$y = $x->item($i)->getElementsByTagName('tag');
 		$z = $x->item($i)->getElementsByTagName('text');
 		$e = $x->item($i)->getElementsByTagName('email');
@@ -29,7 +28,7 @@ if (strlen($q) > 0)
 					stristr($e->item(0)->childNodes->item(0)->nodeValue,$q) ||
 					stristr($z->item(0)->childNodes->item(0)->nodeValue,$q))
 			{
-				if ($hint=="")
+				if ($hint == "")
 				{
 					$hint="post: " .$z->item(0)->childNodes->item(0)->nodeValue .  
 						"\ntag: " .$y->item(0)->childNodes->item(0)->nodeValue .
@@ -37,9 +36,10 @@ if (strlen($q) > 0)
 				}
 				else
 				{
-					$hint=$hint . "<br />" . 
-						$z->item(0)->childNodes->item(0)->nodeValue . 
-						$y->item(0)->childNodes->item(0)->nodeValue;
+					$hint = $hint . "<br />\n" . 
+						"post: " .$z->item(0)->childNodes->item(0)->nodeValue .  
+						"\ntag: " .$y->item(0)->childNodes->item(0)->nodeValue .
+						"\nemail: " .$e->item(0)->childNodes->item(0)->nodeValue;
 				}
 			}
 		}

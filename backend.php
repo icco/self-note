@@ -171,16 +171,16 @@ function buildXML($conn)
 {
 	$all = getPosts($conn);
 	
-	//$ret = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?\>\n";
-	$ret = "<posts>";
+	$ret = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+	$ret .= "<posts>";
 	foreach($all as $row)
 	{
-		$ret .= "<entry>";
+		$ret .= "\n<entry>";
 		$ret .= "<tag>" . $row["tag"] . "</tag>";
 		$ret .= "<text>" . strip_tags(stripslashes(htmlspecialchars_decode(rawurldecode($row['post']), ENT_QUOTES))) . "</text>";
 		$ret .= "<email>" . $row["email"] . "</email>";
 		$ret .= "<date>" . $row["ts"] . "</date>";
-		$ret .= "</entry>";
+		$ret .= "</entry>\n";
 	}
 	$ret .= "</posts>";
 	
