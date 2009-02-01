@@ -175,7 +175,7 @@ function buildXML($conn)
 	{
 		$ret .= "\n<entry>";
 		$ret .= "<tag>" . $row["tag"] . "</tag>";
-		$ret .= "<text>" . dePost($row['post']) . "</text>";
+		$ret .= "<text>" . strip_tags(dePost($row['post'])) . "</text>";
 		$ret .= "<email>" . $row["email"] . "</email>";
 		$ret .= "<date>" . $row["ts"] . "</date>";
 		$ret .= "</entry>\n";
@@ -187,7 +187,7 @@ function buildXML($conn)
 
 function dePost($in)
 {
-	return strip_tags(stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES)));
+	return stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES));
 }
 
 function prePost($in)
