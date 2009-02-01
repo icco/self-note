@@ -56,16 +56,34 @@ function getPosts($conn)
 // Returns the post content 
 function getPost($conn, $id)
 {
-	$query = "select * from notes where id='$id'";
+	$query = "select post from notes where id='$id'";
 	$ret = $conn->query($query)->fetch();
 
 	return $ret["post"];
 }
 
+// Returns the email of a certain post 
+function getEmail($conn, $id)
+{
+	$query = "select email from notes where id='$id'";
+	$ret = $conn->query($query)->fetch();
+
+	return $ret["email"];
+}
+
+// Returns the tag of a certain post 
+function getTag($conn, $id)
+{
+	$query = "select tag from notes where id='$id'";
+	$ret = $conn->query($query)->fetch();
+
+	return $ret["tag"];
+}
+
 // Returns an array of posts, tags, and dates within specified tag
 function getPostsbyTag($conn, $tag)
 {
-	$query = "select * from notes where tag = '$tag'";
+	$query = "select * from notes where tag='$tag'";
 	return $conn->query($query);
 }
 
@@ -96,7 +114,7 @@ function update($conn, $post, $tag, $email, $id)
 	$tag = htmlentities(filter_var($tag));
 	$id = abs((int)floor($id));
 
-	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag,email='$email' where id='$id'";
+	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag',email='$email' where id='$id'";
 	//print $query;
 	$c = $conn->exec($query);
 

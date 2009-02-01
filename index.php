@@ -44,7 +44,7 @@ include("backend.php");
 			$oFCKeditor->Height = '440px';
 			if(isset($_GET["update"]))
 			{
-				$oFCKeditor->Value = htmlspecialchars_decode(rawurldecode(getPost($db,$_GET["update"])),ENT_QUOTES);
+				$oFCKeditor->Value = stripslashes(htmlspecialchars_decode(rawurldecode(getPost($db,$_GET["update"])),ENT_QUOTES));
 				$up = $_GET["update"];
 			}
 			else
@@ -57,7 +57,9 @@ include("backend.php");
 			$oFCKeditor->Create();
 		?>
 		<a href="http://gist.github.com/" target="_blank" style="padding: 5px; float: right;">GitHub Gists</a>
-		<br /><input value="<?php print $DEFAULT_EMAIL; ?>" name="email"> <input value="<?php print $DEFAULT_COURSE; ?>" name="tag"> <input type="submit" value="Submit"> 
+		<br /><input value="<?php if(isset($_GET["update"])){ print getEmail($db,$_GET["update"]);  } else { print $DEFAULT_EMAIL; } ?>" name="email"> 
+		<input value="<?php if(isset($_GET["update"])){ print getTag($db,$_GET["update"]);  } else { print  $DEFAULT_COURSE; } ?>" name="tag">
+		<input type="submit" value="Submit"> 
 		<?php if($up > 0) { ?>
 			<input type="hidden" value="<?php print $up; ?>" name="id" />
 		<?php } ?>
