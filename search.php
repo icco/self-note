@@ -20,22 +20,18 @@ if (strlen($q) > 0)
 		$y = $row['tag'];
 		$z = dePost($row['post']);
 		$e = $row['email'];
+		$i = $row['id'];
 
 		//find a link matching the search text
-		if (stristr($y,$q) || stristr($e,$q) || stristr($z,$q))
+		if (stristr($y,$q) || stristr($e,$q) || stristr($z,$q) || stristr($i,$q))
 		{
 			if ($hint == "")
 			{
-				$hint="post: " .$z .  
-					"\ntag: " .$y .
-					"\nemail: " .$e;
+				$hint=format($row);
 			}
 			else
 			{
-				$hint = $hint . "<br />\n" . 
-					"post: " .$z .  
-					"\ntag: " .$y .
-					"\nemail: " .$e;
+				$hint = $hint . "<br />\n" . format($row); 
 			}
 		}
 	}

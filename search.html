@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>SelfNote Search</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
 <script src="search.js"></script> 
 <style type="text/css"> 
 #livesearch
@@ -13,11 +14,16 @@
 </style>
 </head>
 <body>
-<h1> It's A Search!</h1>
+	<div id="container">
+	<h1><a href="index.php" >SelfNote</a>.</h1>
+<h3> It's A Search!</h3>
 <form>
 <input type="text" id="txt1" size="30" onkeyup="showResult(this.value)">
 </form>
 <div id="livesearch"></div>
-<div><a href="index.php">Go Home...</a></div>
+	<div id="foot">This note taking software developed by <a href="http://natwelch.com" title="Nat's Homepage">Nat Welch</a>. It's hosted on <a href="http://github.com/icco/self-note/tree/master" title="GitHub Repo">GitHub</a>.
+	<br /><small>// I don't know if this opens pants, but I'll give it a try. --- trainman419</small>
+	</div>
+</div>
 </body>
 </html>

@@ -34,10 +34,9 @@ function connect()
 // Formats a row from the page
 function format($row)
 {
-	$ret = "<hr>\n";
-	$ret .= "<div id=\"". $row['id'] . "\">\n ";
+	$ret = "<div id=\"". $row['id'] . "\">\n ";
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
-	$ret .= "<div class=\"tag\">" . $row['tag'] . "</div>\n";
+	$ret .= "<div class=\"tag\">" . $row['tag'] . " <span class=\"permlink\"><a href=\"view.php?id=" . $row['id'] . "\" >#</a></span></div>\n";
 	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span> <span class=\"delete\"><a href=\"?delete=" . $row['id'] . "\">x</a></span></div>\n";
 	$ret .= "<div class=\"post\"> " . dePost($row['post']) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
@@ -84,6 +83,12 @@ function getTag($conn, $id)
 function getPostsbyTag($conn, $tag)
 {
 	$query = "select * from notes where tag='$tag'";
+	return $conn->query($query);
+}
+
+function getPostbyID($conn, $id)
+{
+	$query = "select * from notes where id='$id'";
 	return $conn->query($query);
 }
 
@@ -194,6 +199,18 @@ function prePost($in)
 {
 	$in = rawurlencode(htmlspecialchars($in, ENT_QUOTES));
 	return $in;
+}
+
+function view($conn,$id)
+{
+	$arr = getPostbyID($conn,$id);
+
+	foreach($arr as $row)
+	{
+		$out = format($row);
+	}
+
+	return $out;
 }
 
 ?>

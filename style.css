@@ -7,9 +7,12 @@
 	margin-right: auto;
 }
 
-.timestamp {
+.timestamp, .permlink {
 	color: gray;
 	font-size: 10px;
+}
+
+.timestamp {
 	margin-left: 45px;
 }
 

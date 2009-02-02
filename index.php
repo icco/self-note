@@ -72,7 +72,8 @@ include("backend.php");
 			
 			foreach($arr as $row)
 			{
-				print format($row);
+				print "<hr>\n" . format($row);
+	
 			}
 		?>
 
