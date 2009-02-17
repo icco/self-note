@@ -96,7 +96,7 @@ function getPostbyID($conn, $id)
 function add($conn, $post, $tag, $email)
 {
 	$post = prePost($post);
-	$tag = htmlentities(filter_var($tag));
+	$tag = htmlentities($tag);
 
 	$query = "insert into notes (ts, post, tag, email) values(strftime('%s','now','localtime'),'$post','$tag', '$email')";
 	$c = $conn->exec($query);
@@ -115,7 +115,7 @@ function add($conn, $post, $tag, $email)
 function update($conn, $post, $tag, $email, $id)
 {
 	$post = prePost($post);
-	$tag = htmlentities(filter_var($tag));
+	$tag = htmlentities($tag);
 	$id = abs((int)floor($id));
 
 	$query = "update notes set ts=strftime('%s','now','localtime'),post='$post',tag='$tag',email='$email' where id='$id'";
@@ -174,7 +174,7 @@ function buildXML($conn)
 {
 	$all = getPosts($conn);
 	
-	$ret = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+	$ret = "";
 	$ret .= "<posts>";
 	foreach($all as $row)
 	{
