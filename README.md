@@ -10,9 +10,14 @@ Installation is pretty straight forward. Get a web host with PHP >= 5.2.0 and th
 Feature Ideas
 =============
 Some future features:
- * Update search page. It'd be sweet if this was all done via JavaScript and you could save common views. 
+
+ * Update search page. It'd be sweet if this was all done via JavaScript and you could save common views.
+ * Clean up the delete setup
+ * Add authentication so only you can view your notes, and thus host online. 
+ * Sync multiple instances? (use git? yet keep private?)
  * The ability to sort notes on that search page.
  * More stats on the view page. Word/line count? 
  * Better styling, of both the editor and the page. Maybe a quick button that inverses the page?
+ * Have "cont" button make more sense. Turn buttons to links maybe?
  * MOAR COWBELL (seriously...)
 
