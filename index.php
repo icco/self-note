@@ -29,6 +29,7 @@ include("backend.php");
 			else if(isset($_POST["id"]))
 			{
 				update($db, $_POST["post"],$_POST["tag"],$_POST["email"], $_POST["id"]);
+				$up = $_POST["id"];
 			}
 			else if(isset($_GET["delete"]))
 			{
@@ -48,6 +49,10 @@ include("backend.php");
 				$oFCKeditor->Value = stripslashes(htmlspecialchars_decode(rawurldecode(getPost($db,$_GET["update"])),ENT_QUOTES));
 				$up = $_GET["update"];
 			}
+			else if($_POST["submit"] == "Cont")
+			{
+				$oFCKeditor->Value = stripslashes(htmlspecialchars_decode(rawurldecode(getPost($db,$up)),ENT_QUOTES));
+			}
 			else
 			{
 				$oFCKeditor->Value = '<p>Enter Notes Here.</p>';
@@ -59,8 +64,9 @@ include("backend.php");
 		?>
 		<a href="http://gist.github.com/" target="_blank" style="padding: 5px; float: right;">GitHub Gists</a>
 		<br /><input value="<?php if(isset($_GET["update"])){ print getEmail($db,$_GET["update"]);  } else { print $DEFAULT_EMAIL; } ?>" name="email"> 
-		<input value="<?php if(isset($_GET["update"])){ print getTag($db,$_GET["update"]);  } else { print  $DEFAULT_COURSE; } ?>" name="tag">
-		<input type="submit" value="Submit"> 
+		<input value="<?php if($up > 0){ print getTag($db,$up);  } else { print  $DEFAULT_COURSE; } ?>" name="tag">
+		<input type="submit" name="submit" value="Submit"> 
+		<input type="submit" name="submit" value="Cont"> 
 		<?php if($up > 0) { ?>
 			<input type="hidden" value="<?php print $up; ?>" name="id" />
 		<?php } ?>
