@@ -4,11 +4,21 @@
  */
 
 include("backend.php");
+
+if(isset($_GET["id"]))
+{
+	$id = $_GET["id"];
+}
+else
+{
+	$id = 0;
+}
+
 ?>
 
 <html>
 	<head>
-		<title>Nat's Note Taker</title>
+		<title>Nat's Note Taker - Post #<?php print $id; ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="style.css" rel="stylesheet" type="text/css" />
 		<?php $db = connect(); /* Open DB */ ?>
@@ -17,16 +27,10 @@ include("backend.php");
 	<div id="container">
 	<h1><a href="index.php" >SelfNote</a>.</h1>
 		<?php
-		if(isset($_GET["id"]))
-		{
-			print view($db,$_GET["id"]);
-		}
-		else
-		{
-			print view($db,0);
-		}
-		$db = NULL; /* Close DB*/
+		print view($db,$id);
+		print viewMore($db,$id);
 		
+		$db = NULL; /* Close DB*/
 		?>
 
 	<div id="foot">This note taking software developed by <a href="http://natwelch.com" title="Nat's Homepage">Nat Welch</a>. It's hosted on <a href="http://github.com/icco/self-note/tree/master" title="GitHub Repo">GitHub</a>.

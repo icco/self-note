@@ -5,6 +5,7 @@ FCKConfig.ToolbarSets["NatToolbar"] = [
 ['Link','Unlink'],['Style'],['Source']] ;
 
 
+FCKConfig.BrowserContextMenuOnCtrl = true ;
 FCKConfig.FirefoxSpellChecker = true ;
 FCKConfig.AutoDetectPasteFromWord = false ;
 FCKConfig.ProcessHTMLEntities = false ;

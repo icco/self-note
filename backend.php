@@ -37,7 +37,7 @@ function format($row)
 	$ret = "<div id=\"". $row['id'] . "\">\n ";
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
 	$ret .= "<div class=\"tag\">" . $row['tag'] . " <span class=\"permlink\"><a href=\"view.php?id=" . $row['id'] . "\" >#</a></span></div>\n";
-	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . " <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span> <span class=\"delete\"><a href=\"?delete=" . $row['id'] . "\">x</a></span></div>\n";
+	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . "<!-- " . date("r",$row['ts'])  . " --> <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span> <span class=\"delete\"><a href=\"?delete=" . $row['id'] . "\">x</a></span></div>\n";
 	$ret .= "<div class=\"post\"> " . dePost($row['post']) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
 	$ret .= "</div>\n";
@@ -213,5 +213,21 @@ function view($conn,$id)
 	return $out;
 }
 
+// Used to display box at bottom of post.
+function viewMore($conn,$id)
+{
+	$arr = getPostbyID($conn,$id);
+
+	// In theory this should only return one...
+	foreach($arr as $row)
+	{
+		$out = "<div class=\"bottom\">";
+		$out .= "Unix time: " . date("U",$row['ts']) ." <br />\n";
+		$out .= "</div>";
+
+	}
+
+	return $out;
+}
 ?>
 
