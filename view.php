@@ -34,7 +34,7 @@ else
 		?>
 
 	<div id="foot">This note taking software developed by <a href="http://natwelch.com" title="Nat's Homepage">Nat Welch</a>. It's hosted on <a href="http://github.com/icco/self-note/tree/master" title="GitHub Repo">GitHub</a>.
-	<br /><small>// I don't know if this opens pants, but I'll give it a try. --- trainman419</small>
+	<br /><small><?php print footQuote(); ?></small>
 	</div>
 	</div>
 </body>

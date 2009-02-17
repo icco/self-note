@@ -229,5 +229,11 @@ function viewMore($conn,$id)
 
 	return $out;
 }
+
+function footQuote()
+{
+	$out = "// I don't know if this opens pants, but I'll give it a try. --- trainman419";
+	return $out;
+}
 ?>
 
