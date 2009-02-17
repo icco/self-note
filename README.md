@@ -7,7 +7,6 @@ Installation
 ============
 Installation is pretty straight forward. Get a web host with PHP >= 5.2.0 and that you have access to PDO_SQLITE. Depending on your permissions you will need to create the sqlite db ahead of time as well.
 
-
 Feature Ideas
 =============
 Some future features:
