@@ -9,7 +9,9 @@ ob_start(); // a hack but works.
 include("fckeditor/fckeditor.php");
 include("backend.php");
 
-if(!checkCookie())
+$db = connect();
+
+if(!checkCookie($db))
 {
 	header('Location: auth.php');
 }

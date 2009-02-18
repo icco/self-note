@@ -11,13 +11,15 @@ if(isset($_POST['user']))
 
 if(isset($_POST['password']))
 {
-	$pw = $_POST['password'];
+	$pw = md5($_POST['password']); // hash early for security and hand-shaking
 }
 
 if(isset($pw) && isset($user))
 {
 	$db = connect();
 	$ans = login($db, $user, $pw);
+
+	makeCookie($user,$pw);
 
 	if($ans)
 	{

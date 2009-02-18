@@ -45,8 +45,6 @@ function connect()
 
 function login($conn, $u, $p)
 {
-	$p = md5($p);
-
 	$query = "select id from auth where email='$u' AND passwd='$p'";
 	if(!$conn->query($query)->fetch())
 	{
@@ -263,12 +261,20 @@ function footQuote()
 	return $FOOT_QUOTE;
 }
 
-function checkCookie()
+function checkCookie($conn)
 {
+	$u = $_COOKIE['SELFNOTE_email'];
+	$p = $_COOKIE['SELFNOTE_pw'];
 
-
-
-	return true;
+	return login($conn,$u,$p);
 }
+
+function makeCookie($u, $p)
+{
+	$expire = time()+(60*60*24); // Expire in a day
+	setcookie("SELFNOTE_email", $u, $expire);
+	setcookie("SELFNOTE_pw", $p, $expire);
+}
+
 ?>
 
