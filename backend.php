@@ -28,7 +28,30 @@ function connect()
 		$db->exec($query);
 	}
 	
+	// Create table if it does not exist	
+	$query = "select name from sqlite_master where name='auth'";
+	if(!$db->query($query)->fetch())
+	{
+		$query = "CREATE TABLE auth (id INTEGER PRIMARY KEY,email TEXT, passwd TEXT)";
+		$db->exec($query);
+	}
+	
 	return $db;
+}
+
+function login($conn, $u, $p)
+{
+	$p = md5($p);
+
+	$query = "select id from auth where email='$u' AND passwd='$p'";
+	if(!$conn->query($query)->fetch())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 // Formats a row from the page
