@@ -262,5 +262,13 @@ function footQuote()
 	global $FOOT_QUOTE;
 	return $FOOT_QUOTE;
 }
+
+function checkCookie()
+{
+
+
+
+	return true;
+}
 ?>
 

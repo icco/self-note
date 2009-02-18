@@ -4,8 +4,18 @@
  * @author Nat Welch
  */
 
-include("fckeditor/fckeditor.php") ;
+ob_start(); // a hack but works.
+
+include("fckeditor/fckeditor.php");
 include("backend.php");
+
+if(!checkCookie())
+{
+	header('Location: auth.php');
+}
+
+ob_end_flush();
+
 ?>
 
 <html>
