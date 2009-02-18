@@ -10,6 +10,7 @@ include("config.php");
 function connect()
 {
 	global $SQLITE_DB;
+	global $DEFAULT_EMAIL;
 	try {
 		$db = new PDO("sqlite:" . $SQLITE_DB);
 	} catch (PDOException $e) {
@@ -33,6 +34,9 @@ function connect()
 	if(!$db->query($query)->fetch())
 	{
 		$query = "CREATE TABLE auth (id INTEGER PRIMARY KEY,email TEXT, passwd TEXT)";
+		$db->exec($query);
+		$p = md5("secret");
+		$query = "insert into auth (email, passwd) values('$DEFAULT_EMAIL','$p')";
 		$db->exec($query);
 	}
 	

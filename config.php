@@ -3,7 +3,8 @@
 /*
  * USER CONFIG
  */
-$DEFAULT_EMAIL = "nat@natwelch.com";
+
+$DEFAULT_EMAIL = "nat@natwelch.com"; //Password set to secret
 $DEFAULT_COURSE = "COURSE";
 $SQLITE_DB = "selfNote.db";
 

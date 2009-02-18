@@ -1,5 +1,7 @@
 <?php
 
+ob_start(); // a hack but works.
+
 include "backend.php";
 
 if(isset($_POST['user']))
@@ -19,10 +21,11 @@ if(isset($pw) && isset($user))
 
 	if($ans)
 	{
-		// Aww this doesn't work...
 		header('Location: index.php');
 	}
 }
+
+ob_end_flush();
 
 ?>
 
