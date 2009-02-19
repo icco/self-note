@@ -25,6 +25,7 @@ ob_end_flush();
 		<title>Nat's Note Taker</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="style.css" rel="stylesheet" type="text/css" />
+		<link href="fckeditor/editorstyles.css" rel="stylesheet" type="text/css" />
 		<?php $db = connect(); /* Open DB */ ?>
 	</head>
 	<body>

@@ -61,6 +61,8 @@
 	<Style name="Superscript" element="sup" />
 	-->
 
+	<Style name="Float: right" element="span">
+		<Style name="class" value="fRight" />
 	<Style name="Marker: Yellow" element="span">
 		<Style name="background-color" value="Yellow" />
 	</Style>
