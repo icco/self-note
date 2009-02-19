@@ -4,7 +4,7 @@ This is a simple php based webpage to take notes in class. I hope to eventually 
 
 ## Installation
 
-Installation is pretty straight forward. Get a web host with PHP >= 5.2.0 and that you have access to PDO_SQLITE. Depending on your permissions you will need to create the sqlite db ahead of time as well.
+Installation is pretty straight forward. Get a web host with PHP >= 5.2.0 and that you have access to PDO_SQLITE. Depending on your permissions you will need to create the sqlite db ahead of time as well. Edit config.php before you start so the database is created in the right spot and your username is correct.
 
 ## Feature Ideas
 

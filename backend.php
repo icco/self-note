@@ -217,7 +217,9 @@ function buildXML($conn)
 
 function dePost($in)
 {
-	return stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES));
+	$out = stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES));
+	$out = preg_replace('/\s(\w+:\/\/)(\S+)/', ' <a href="\\1\\2" title="\\2">\\1\\2</a>', $out); 
+	return $out;
 }
 
 function prePost($in)
