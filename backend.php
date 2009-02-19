@@ -219,6 +219,12 @@ function dePost($in)
 {
 	$out = stripslashes(htmlspecialchars_decode(rawurldecode($in), ENT_QUOTES));
 	$out = preg_replace('/\s(\w+:\/\/)(\S+)/', ' <a href="\\1\\2" title="\\2">\\1\\2</a>', $out); 
+	/* Gist replacement inspired by http://github.com/guitsaru/code-feather/	
+	if(preg_match("/\[gist: ([0-9]+)\]/i", $out, $matches)) {
+		return '<script src="http://gist.github.com/'.$matches[1].'.js"></script>';
+	}
+	*/
+	$out = preg_replace("/\[gist: ([0-9]+)\]/i", '<script src="http://gist.github.com/\\1.js"></script>', $out);
 	return $out;
 }
 
