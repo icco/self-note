@@ -52,6 +52,7 @@ ob_end_flush();
 		<form action="index.php" method="post">
 		<?php
 			$oFCKeditor = new FCKeditor('post') ;
+			$oFCKeditor->Config["CustomConfigurationsPath"] = "../FCKconfig.js";
 			$oFCKeditor->ToolbarSet = 'NatToolbar';
 			$oFCKeditor->BasePath = 'fckeditor/' ;
 			$oFCKeditor->Width = '100%';
@@ -70,12 +71,11 @@ ob_end_flush();
 				$oFCKeditor->Value = '<p>Enter Notes Here.</p>';
 				$up = 0;
 			}
-			$oFCKeditor->Config["CustomConfigurationsPath"] = "../FCKconfig.js";
 			$oFCKeditor->Config['SkinPath'] = 'skins/silver/';
 			$oFCKeditor->Create();
 		?>
 		<a href="http://gist.github.com/" target="_blank" style="padding: 5px; float: right;">GitHub Gists</a>
-		<br /><input value="<?php if(isset($_GET["update"])){ print getEmail($db,$_GET["update"]);  } else { print $DEFAULT_EMAIL; } ?>" name="email"> 
+		<br /><input readonly value="<?php if(isset($_GET["update"])){ print getEmail($db,$_GET["update"]);  } else { print $DEFAULT_EMAIL; } ?>" name="email"> 
 		<input value="<?php if($up > 0){ print getTag($db,$up);  } else { print  $DEFAULT_COURSE; } ?>" name="tag">
 		<input type="submit" name="submit" value="Submit"> 
 		<input type="submit" name="submit" value="Save"> 

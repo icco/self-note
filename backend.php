@@ -61,7 +61,7 @@ function format($row)
 {
 	$ret = "<div id=\"". $row['id'] . "\">\n ";
 	$ret .= "<img src=\"" . gravatar($row['email']) . "\" class=\"grav\" title=\"A gravatar\" \>\n";
-	$ret .= "<div class=\"tag\">" . $row['tag'] . " <span class=\"permlink\"><a href=\"view.php?id=" . $row['id'] . "\" >#</a></span></div>\n";
+	$ret .= "<div class=\"tag\">" . $row['tag'] . " <span class=\"permlink\"><a href=\"view.php?id=" . $row['id'] . "\" >#</a> <a href=\"print.php?id=" . $row['id'] . "\" >p</a></span></div>\n";
 	$ret .= "<div class=\"timestamp\">" . date("m.d.Y",$row['ts']) . "<!-- " . date("r",$row['ts'])  . " --> <span class=\"edit\"><a href=\"index.php?update=" . $row['id'] ."\">Edit</a></span> <span class=\"delete\"><a href=\"?delete=" . $row['id'] . "\">x</a></span></div>\n";
 	$ret .= "<div class=\"post\"> " . dePost($row['post']) . "</div>\n";
 	//$ret .= "<div class=\"email\"> " . $row['email'] . "</div>";
