@@ -6,7 +6,7 @@ FCKConfig.ToolbarSets["NatToolbar"] = [
 ['Style','FontFormat','FontSize'],['Rule'],
 ['TextColor','BGColor']] ;
 
-FCKConfig.EditorAreaCSS = '/editorstyles.css' ;
+FCKConfig.EditorAreaCSS = '../editorstyles.css' ;
 FCKConfig.BrowserContextMenuOnCtrl = true ;
 FCKConfig.FirefoxSpellChecker = true ;
 FCKConfig.AutoDetectPasteFromWord = false ;
