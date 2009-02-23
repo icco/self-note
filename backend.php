@@ -255,7 +255,9 @@ function viewMore($conn,$id)
 	foreach($arr as $row)
 	{
 		$out = "<div class=\"bottom\">";
-		$out .= "Unix time: " . date("U",$row['ts']) ." <br />\n";
+		$out .= "<p id=\"morehead\">More info about this post:</p>";
+		$out .= "<p>Unix time: " . date("U",$row['ts']) ." </p>\n";
+		$out .= "<p>Author Email: <a href=\"mailto:" . $row['email'] ."\">" . $row['email'] . "</a></p>\n";
 		$out .= "</div>";
 
 	}

@@ -1,7 +1,7 @@
 /**
  * Change the css in here to make things shiny or less shiny for your personal preferences.
  */
-#container {
+#container, .bottom {
 	width: 750px;
 	margin-left: auto;
 	margin-right: auto;
@@ -67,8 +67,20 @@ h1 a, h1 a:visited, h1 a:hover {
 	float: right;
 }
 
-.more {
+.bottom {
+	margin: 5px;
+	padding: 2px;
+	background: #ddd;
+	font-size: 0.7em;
+}
 
+.bottom p {
+	padding-left: 15px;
+	margin-bottom: 1px;
+	margin-top: 1px;
+}
 
-
+#morehead {
+	padding-top: 5px;
+	font-weight: 700;
 }
