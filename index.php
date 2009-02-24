@@ -31,9 +31,10 @@ ob_end_flush();
 	<body>
 	<div id="clock"></div>
 	<div id="container">
-	<h1><a href="." >SelfNote</a>.</h1><form action="search.php" method="get">
-	<h4 align="right"><a href="search.html" >Search</a>: <input name="q" size="50"></h4>
+	<form action="search.php" method="get">
+	<h4 style="float: right"><a href="search.html" >Search</a>: <input name="q" size="50"></h4>
 	<input type="hidden" name="display" value="1">
+	<h1><a href="." >SelfNote</a>.</h1>
 	</form>
 		<div id="editor">
 		<?php 
