@@ -28,11 +28,11 @@ else
 
 		foreach($arr as $post)
 		{
+			print dePost($post['post']);
+			print "<hr />";	
 			print "<div>" . $post['tag'] . "<br />"; 
 			print "Last Modified: " . date("r",$post['ts']) . "<br/>\n";
 			print "By " . $post['email'] . "</div>";
-			print "<hr />";	
-			print dePost($post['post']);
 		}
 
 		$db = NULL; /* Close DB*/
